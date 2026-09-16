@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import datetime
+import streamlit.components.v1 as components
 
 
 # =========================================================
@@ -12,6 +13,235 @@ st.set_page_config(
     layout="wide"
 )
 
+
+
+# =========================================================
+# DISEÑO EMPRESARIAL — HTML + CSS + JS
+# =========================================================
+
+st.markdown("""
+<style>
+:root {
+    --navy: #0B1220;
+    --navy-2: #111C30;
+    --blue: #2563EB;
+    --blue-light: #60A5FA;
+    --cyan: #22D3EE;
+    --surface: #FFFFFF;
+    --surface-2: #F5F7FB;
+    --text: #172033;
+    --muted: #64748B;
+    --border: #E2E8F0;
+}
+
+.stApp {
+    background:
+        radial-gradient(circle at 15% 5%, rgba(37,99,235,.09), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(34,211,238,.07), transparent 25%),
+        #F5F7FB;
+    color: var(--text);
+}
+
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0B1220 0%, #111C30 100%);
+    border-right: 1px solid rgba(255,255,255,.08);
+}
+
+[data-testid="stSidebar"] * {
+    color: #E8EEF8 !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stRadio"] label {
+    border-radius: 12px;
+    padding: 9px 12px;
+    transition: all .25s ease;
+}
+
+[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+    background: rgba(96,165,250,.13);
+    transform: translateX(5px);
+    box-shadow: 0 0 20px rgba(37,99,235,.15);
+}
+
+h1, h2, h3 {
+    color: var(--navy) !important;
+    letter-spacing: -.02em;
+}
+
+h1 {
+    animation: slideDown .65s ease both;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    border-radius: 22px;
+    color: white;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(96,165,250,.28), transparent 24%),
+        linear-gradient(135deg, #0B1220, #172A4D 65%, #1D4ED8);
+    box-shadow: 0 18px 45px rgba(11,18,32,.18);
+    animation: fadeUp .65s ease both;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    right: -70px;
+    top: -110px;
+    border-radius: 50%;
+    background: rgba(34,211,238,.16);
+    filter: blur(5px);
+    animation: floatGlow 5s ease-in-out infinite;
+}
+
+.hero h1, .hero p {
+    color: white !important;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 2.1rem;
+}
+
+.hero p {
+    margin: 8px 0 0;
+    color: #CBD5E1 !important;
+}
+
+[data-testid="stMetric"] {
+    background: rgba(255,255,255,.92);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 17px 20px;
+    box-shadow: 0 8px 24px rgba(15,23,42,.06);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    animation: fadeUp .55s ease both;
+}
+
+[data-testid="stMetric"]:hover {
+    transform: translateY(-5px);
+    border-color: rgba(37,99,235,.35);
+    box-shadow: 0 14px 32px rgba(37,99,235,.13);
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--muted) !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--navy) !important;
+}
+
+div[data-baseweb="input"],
+div[data-baseweb="textarea"],
+div[data-baseweb="select"] {
+    border-radius: 11px;
+}
+
+div[data-baseweb="input"]:focus-within,
+div[data-baseweb="textarea"]:focus-within,
+div[data-baseweb="select"]:focus-within {
+    box-shadow: 0 0 0 3px rgba(37,99,235,.12), 0 0 18px rgba(37,99,235,.08);
+}
+
+.stButton > button,
+.stFormSubmitButton > button {
+    border: 0 !important;
+    border-radius: 11px !important;
+    font-weight: 700 !important;
+    padding: .62rem 1.15rem !important;
+    background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
+    color: white !important;
+    box-shadow: 0 7px 18px rgba(37,99,235,.22) !important;
+    transition: all .22s ease !important;
+}
+
+.stButton > button:hover,
+.stFormSubmitButton > button:hover {
+    transform: translateY(-2px) scale(1.015);
+    box-shadow: 0 12px 26px rgba(37,99,235,.32) !important;
+    filter: brightness(1.08);
+}
+
+.stButton > button:active,
+.stFormSubmitButton > button:active {
+    transform: translateY(1px) scale(.99);
+}
+
+[data-testid="stDataFrame"] {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(15,23,42,.06);
+}
+
+div[data-testid="stAlert"] {
+    border-radius: 13px;
+    animation: fadeUp .35s ease both;
+}
+
+hr {
+    border-color: var(--border) !important;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatGlow {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-20px,20px) scale(1.08); }
+}
+
+@media (max-width: 768px) {
+    .hero { padding: 22px; border-radius: 17px; }
+    .hero h1 { font-size: 1.55rem; }
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Iluminación interactiva con JavaScript.
+components.html("""
+<div id="light-layer"></div>
+<script>
+const layer = document.getElementById("light-layer");
+layer.style.cssText = `
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9999;
+    background:radial-gradient(
+        190px circle at 50% 50%,
+        rgba(96,165,250,.12),
+        transparent 72%
+    );
+    transition:background .08s linear;
+`;
+document.addEventListener("mousemove", (event) => {
+    layer.style.background = `
+        radial-gradient(
+            190px circle at ${event.clientX}px ${event.clientY}px,
+            rgba(96,165,250,.12),
+            rgba(34,211,238,.035) 35%,
+            transparent 72%
+        )
+    `;
+});
+</script>
+""", height=0)
 
 # =========================================================
 # CLASE TICKET
@@ -171,24 +401,23 @@ gestor = st.session_state.gestor
 # ENCABEZADO
 # =========================================================
 
-st.title("🛠️ Sistema de Soporte Técnico")
-
-st.write(
-    """
-    Aplicación para gestionar solicitudes de soporte mediante
-    operaciones **CRUD: Crear, Consultar, Actualizar y Eliminar tickets**.
-    """
-)
-
-st.divider()
+st.markdown("""
+<div class="hero">
+    <h1>🛠️ Sistema de Soporte Técnico</h1>
+    <p>Gestión empresarial de incidencias mediante operaciones CRUD.</p>
+</div>
+""", unsafe_allow_html=True)
 
 
 # =========================================================
 # MENÚ LATERAL
 # =========================================================
 
+st.sidebar.markdown("## 🏢 Mesa de Ayuda")
+st.sidebar.caption("Centro de gestión de incidencias")
+
 opcion = st.sidebar.radio(
-    "Menú",
+    "Módulos",
     [
         "Inicio",
         "Crear ticket",
